@@ -136,10 +136,10 @@ git clone https://github.com/manili/VSDBabySoC.git
 
 cd ~/VLSI/VSDBabySoC/
 
-root@spatha-VirtualBox:~/VLSI$ ls VSDBabySoC/
+root@dhyan:/home/VLSI/VSDBabySoC# ls
 images  LICENSE  Makefile  README.md  src
 
-spatha@spatha-VirtualBox:~/VLSI$ ls VSDBabySoC/src/module/
+root@dhyan:/home/VLSI/VSDBabySoC/src/module# ls
 avsddac.v  avsdpll.v  clk_gate.v  pseudo_rand_gen.sv  pseudo_rand.sv  rvmyth_gen.v  rvmyth.tlv  rvmyth.v  testbench.rvmyth.post-routing.v  testbench.v  vsdbabysoc.v
 ```
 ### TLV to Verilog Conversion for RVMYTH
@@ -166,26 +166,24 @@ pip install pyyaml click sandpiper-saas
 # Step 4: Convert rvmyth.tlv to Verilog
 sandpiper-saas -i ./src/module/*.tlv -o rvmyth.v --bestsv --noline -p verilog --outdir ./src/module/
 ```
- ![Alt Text](Images/1.png)
 
 ✅ After running the above command, rvmyth.v will be generated in the src/module/ directory.
 
 You can confirm this by listing the files:
 
 ```bash
-spatha@spatha-VirtualBox:~$ cd VLSI/VSDBabySoC/
-spatha@spatha-VirtualBox:~/VLSI/VSDBabySoC$ ls src/module/
+root@dhyan:/home/VLSI/VSDBabySoC/src/module# ls
 avsddac.v  avsdpll.v  clk_gate.v  pseudo_rand_gen.sv  pseudo_rand.sv  rvmyth_gen.v  rvmyth.tlv  rvmyth.v  testbench.rvmyth.post-routing.v  testbench.v  vsdbabysoc.v
 ```
 
 #### Note 
 To use this environment in future sessions, always activate it first:
 ```bash
-spatha@spatha-VirtualBox:~$ source sp_env/bin/activate
+root@dhyan:~# source sp_env/bin/activate
 ```
 To exit:
 ```bash
-spatha@spatha-VirtualBox:~$ deactivate
+root@dhyan:~# deactivate
 ```
 
 ### Simulation Steps
@@ -227,7 +225,9 @@ gtkwave output/pre_synth_sim/pre_synth_sim.vcd
 ```
 Drag and drop the CLK, reset, OUT (DAC), and RV TO DAC [9:0] signals to their respective locations in the simulation tool
 
- ![Alt Text](Images/today4.jpg)
+<img width="1656" height="934" alt="Screenshot From 2025-10-02 12-10-14" src="https://github.com/user-attachments/assets/1dd8edac-081f-4db6-91f3-8f372447c21e" />
+
+<img width="1651" height="699" alt="Screenshot From 2025-10-02 12-12-04" src="https://github.com/user-attachments/assets/88be9ba3-1085-4df4-9c0b-aa5bb85e46ce" />
 
 In this picture we can see the following signals:
 
@@ -241,15 +241,7 @@ In this picture we can see the following signals:
 
 **OUT**: This is a real datatype wire which can simulate analog values. It is the output wire real OUT signal of the DAC module. This signal comes from the DAC, originally. 
 
-This can be viewed by changing the Data Format of the signal to Analog → Step
-
-#### Viewing DAC output in analog mode
-
-Drag and drop the CLK, reset, OUT (DAC) (as analog step), and RV TO DAC [9:0] signals to their respective locations in the simulation tool 
-
-![Alt Text](Images/today5.jpeg)
-
-![Alt Text](Images/today6.jpg)
+This was viewed by changing the Data Format of the signal to Analog → Step
 
 
 ### Trouble shooting tips
